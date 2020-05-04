@@ -23,7 +23,7 @@
       }else{
         echo '<li class="nav-item">';
       }?>
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?=base_url();?>karyawan">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -38,14 +38,22 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
     
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <?php if ($active=="Data Transaksi"){
+        echo '<li class="nav-item active">';
+      }else{
+        echo '<li class="nav-item">';
+      }?>
+        <a class="nav-link" href="<?=base_url();?>karyawan/transaksi">
           <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Data Transaksi</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <?php if ($active=="Data Barang"){
+        echo '<li class="nav-item active">';
+      }else{
+        echo '<li class="nav-item">';
+      }?>
+        <a class="nav-link" href="<?=base_url();?>karyawan/barang">
           <i class="fas fa-fw fa-folder"></i>
           <span>Data Barang</span>
         </a>

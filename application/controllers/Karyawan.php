@@ -31,12 +31,23 @@ class Karyawan extends CI_Controller
     public function transaksi()
     {
         $data=$this->data();
-        $data['header'] = 'SI-UP - Dashboard';
-        $data['active'] = 'Dashboard';
+        $data['header'] = 'SI-UP - Transaksi';
+        $data['active'] = 'Data Transaksi';
         $this->load->view('karyawan/template/header',$data);
         $this->load->view('karyawan/template/sidebar');
         $this->load->view('karyawan/template/topbar');
         $this->load->view('karyawan/transaksi');
+        $this->load->view('karyawan/template/footer');
+    }
+    public function barang()
+    {
+        $data=$this->data();
+        $data['header'] = 'SI-UP - Data Barang';
+        $data['active'] = 'Data Barang';
+        $this->load->view('karyawan/template/header',$data);
+        $this->load->view('karyawan/template/sidebar');
+        $this->load->view('karyawan/template/topbar');
+        $this->load->view('karyawan/barang');
         $this->load->view('karyawan/template/footer');
     }
 }
