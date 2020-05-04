@@ -18,7 +18,7 @@ class model_umum extends CI_Model {
 	}
 	public function tambah($username,$pass,$fname,$lname){
 		$data = [
-			'nama_user' => $name,
+			'nama_user' => $fname." ".$lname,
 			'username' => $username,
 			'password' => $pass,
 			'level' => 3
