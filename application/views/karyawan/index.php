@@ -44,7 +44,7 @@
                 <div class="col-lg-4">
                 </div>
                 <div class="col-lg-4">
-                  <input type="submit" class="btn btn-primary btn-user btn-block" value="Hitung">
+                  <a href="" data-toggle="modal" data-target="#Mtagihan" class="btn btn-primary btn-user btn-block">Hitung</a>
                 </div>
                 <div class="col-lg-4">
                 </div>
@@ -57,51 +57,24 @@
   </div>
 </div>
  <!-- modal tagihan -->
- <div class="modal fade displaycontent" id="detail<?= $u['id'] ?>">
+ <div class="modal fade" id="Mtagihan" tabindex="-1" role="dialog" aria-labelledby="mahasiswaEditLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Detail Skripsi</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <td>Judul</td>
-                            <td><?php echo $u['judul']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Abstrak</td>
-                            <td><?php echo $u['abstract']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Dosen Pembimbing 1</td>
-                            <td><?php echo $u['dosbing_1']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Dosen Pembimbing2</td>
-                            <td><?php echo $u['dosbing_2']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Prodi</td>
-                            <td><?php echo $u['prodi']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>status</td>
-                            <td><?php echo $this->db->get_where('status', ['id' => $u['status']])->row_array()['ket']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Nilai</td>
-                            <?php if ($u['nilai'] != 0) : ?>
-                                <td><?= $u['nilai']; ?></td>
-                            <?php else : ?>
-                                <td>N/A</td>
-                            <?php endif; ?>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Tagihan Pembayaran</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                
+                <div class="modal-body">
+                    <p id="tagihan">Rp. 0</p>
+                    <input type="hidden" name="tagihan">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a href="" class="btn btn-primary">Simpan</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
