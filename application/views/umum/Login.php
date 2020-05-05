@@ -34,7 +34,6 @@
                                     <div class="text-center">
                                         <a class="small" href="<?= base_url('Umum/tdaftar'); ?>">Buat Akun!</a>
                                     </div>
-                                    <!-- <button type="button" id="tombol" onclick="Swal('test','ini testing loh', 'success')">klik saya</button> -->
                                 </div>
                             </div>
                         </div>

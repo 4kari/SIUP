@@ -42,3 +42,15 @@ if (flashdata == 'Tidak boleh kosong !') {
         showConfirmButton: true,
     })
 }
+
+//Pendaftaran Berhasil
+if (flashdata == 'Pendaftaran Sukses !') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        text: 'Silahkan lakukan login',
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
