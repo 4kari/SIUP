@@ -13,8 +13,9 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                  <thead>
                     <tr>
+                      <th>No</th>
                       <th>Id Barang</th>
                       <th>Nama Barang</th>
                       <th>Action</th>
@@ -22,28 +23,34 @@
                   </thead>
                   <tfoot>
                     <tr>
+                      <th>No</th>
                       <th>Id Barang</th>
                       <th>Nama Barang</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Kertas A4</td>
-                      <td>
-                      <a href="" data-toggle="modal" data-target="#barang<? //echo $item['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-fw fa-edit"></i>Edit</a>
-                      <a href="<? //echo base_url() . 'owner/deletebarang/' . $item['id'] ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i>Delete</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Buffallo</td>
-                      <td>
-                      <a href="" data-toggle="modal" data-target="#barang<? //echo $item['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-fw fa-edit"></i>Edit</a>
-                      <a href="<?//echo base_url() . 'owner/deletebarang/' . $item['id'] ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i>Delete</a>
-                      </td>
-                    </tr>
+                    <?php if (empty($item)) : ?>
+                      <tr>
+                        <td colspan="12">
+                          <div class="alert alert-danger" role="alert">
+                            Data not found!
+                          </div>
+                        </td>
+                      </tr>
+                    <?php endif; ?>
+                    <?php foreach ($item as $i) : ?>
+                      <tr>
+                        <th scope="row"><?= ++$start; ?></th>
+                        <td><?= $i['id']; ?></td>
+                        <td><?= $i['nama_barang']; ?></td>
+                        <td>
+                          <a href="" data-toggle="modal" data-target="#barang<?= $i['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                          <a href="<? //echo base_url() . 'owner/deletebarang/' . $item['id'] 
+                                    ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i> Delete</a>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
@@ -53,5 +60,42 @@
         </div>
         <!-- /.container-fluid -->
 
-      </div>
-      <!-- End of Main Content -->
+        </div>
+        <!-- End of Main Content -->
+
+        <?php foreach ($item as $i) :
+        ?>
+
+          <!-- Modal Edit -->
+          <div class="modal fade" id="barang<?= $i['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="barangLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="barang">Edit Data Barang</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="<?= base_url('owner/updateTransaksi/' . $i['id']); ?>" method="POST">
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="harga">Harga</label>
+                      <input type="text" class="form-control" id="harga" name="harga" value="<?= $i['id']; ?>">
+                      <?= form_error('harga', '<div class="alert-danger" role="alert">', '</div>'); ?>
+                    </div>
+                    <div class="form-group">
+                      <label for="alamat">Keterangan</label>
+                      <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $i['nama_barang']; ?>">
+                      <?= form_error('keterangan', '<div class="alert-danger" role="alert">', '</div>'); ?>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        <?php endforeach; ?>
