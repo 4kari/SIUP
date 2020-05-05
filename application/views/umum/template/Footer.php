@@ -8,6 +8,9 @@
   <!-- Custom scripts for all pages-->
   <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
-</body>
+  <script src="<?= base_url('assets/'); ?>js/sweet/sweetalert2.all.min.js"></script>
+  <script src="<?= base_url('assets/'); ?>js/AlertSweet.js"></script>
 
-</html>
+  </body>
+
+  </html>
