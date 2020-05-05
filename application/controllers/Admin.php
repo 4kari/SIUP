@@ -9,7 +9,8 @@ class Admin extends CI_Controller
 		parent::__construct();
 		if($this->session->userdata('level')!=1){
 			redirect('Auth');
-		}
+        }
+        $this->load->model('model_admin','model');
 	}
 
     public function data(){
@@ -36,6 +37,7 @@ class Admin extends CI_Controller
         $data=$this->data();
         $data['header'] = 'SI-UP - Transaksi';
         $data['active'] = 'Data Transaksi';
+        $data['transaksi'] = $this->db->get('transaksi')->result_array();
         $this->load->view('admin/template/header',$data);
         $this->load->view('admin/template/sidebar');
         $this->load->view('admin/template/topbar');
@@ -47,6 +49,7 @@ class Admin extends CI_Controller
         $data=$this->data();
         $data['header'] = 'SI-UP - Data Barang';
         $data['active'] = 'Data Barang';
+        $data['barang'] = $this->db->get('barang')->result_array();
         $this->load->view('admin/template/header',$data);
         $this->load->view('admin/template/sidebar');
         $this->load->view('admin/template/topbar');
@@ -58,6 +61,7 @@ class Admin extends CI_Controller
         $data=$this->data();
         $data['header'] = 'SI-UP - Data Barang';
         $data['active'] = 'Management User';
+        $data['Muser'] = $this->model->getuserdata();
         $this->load->view('admin/template/header',$data);
         $this->load->view('admin/template/sidebar');
         $this->load->view('admin/template/topbar');
