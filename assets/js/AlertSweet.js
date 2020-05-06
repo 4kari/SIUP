@@ -31,18 +31,6 @@ if (flashdata == 'Password Salah !') {
         showConfirmButton: true,
     })
 }
-
-//LOGIN gagal (Field tidakk boleh kosong)
-if (flashdata == 'Tidak boleh kosong !') {
-    Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Login Tidak berhasil',
-        text: 'Password Salah !',
-        showConfirmButton: true,
-    })
-}
-
 //Pendaftaran Berhasil
 if (flashdata == 'Pendaftaran Sukses !') {
     Swal.fire({

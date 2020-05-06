@@ -7,8 +7,15 @@
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tabel Data Transaksi</h6>
+          <div class="card-header py-3">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Transaksi</h6>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                  <a href="" data-toggle="modal" data-target="#tambah" class="btn btn-info btn-sm"><i class="fa fa-fw fa-plus"></i> Tambah</a>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -48,9 +55,8 @@
                         <td><?= $i['harga']; ?></td>
                         <td><?= $i['keterangan']; ?></td>
                         <td>
-                          <a href="" data-toggle="modal" data-target="#barang<?= $i['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                          <a href="<? //echo base_url() . 'owner/deletebarang/' . $item['id'] 
-                                    ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i> Delete</a>
+                          <a href="" data-toggle="modal" data-target="#transaksi<?= $i['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                          <a href="<?= base_url() . 'Owner/hapus_transaksi/' . $i['id']; ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i> Delete</a>
                         </td>
                       </tr>
                     <?php endforeach; ?>
@@ -66,39 +72,79 @@
         </div>
         <!-- End of Main Content -->
 
-        <?php foreach ($item as $i) :
-        ?>
+<?php foreach ($item as $i) :?>
 
-          <!-- Modal Edit -->
-          <div class="modal fade" id="barang<?= $i['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="barangLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="barang">Edit Data Transaksi</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <form action="<?= base_url('owner/updateTransaksi/' . $i['id']); ?>" method="POST">
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="harga">Harga</label>
-                      <input type="text" class="form-control" id="harga" name="harga" value="<?= $i['harga']; ?>">
-                      <?= form_error('harga', '<div class="alert-danger" role="alert">', '</div>'); ?>
-                    </div>
-                    <div class="form-group">
-                      <label for="alamat">Keterangan</label>
-                      <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $i['keterangan']; ?>">
-                      <?= form_error('keterangan', '<div class="alert-danger" role="alert">', '</div>'); ?>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                  </div>
-                </form>
-              </div>
+  <!-- Modal Edit -->
+  <div class="modal fade" id="transaksi<?= $i['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="TransaksiLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="transaksi">Edit Data Transaksi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="<?= base_url('Owner/edit_transaksi/' . $i['id']); ?>" method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="tanggal">Tanggal</label>
+              <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= $i['tanggal']; ?>">
+              <?= form_error('tanggal', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="harga">Harga</label>
+              <input type="number" class="form-control" id="harga" name="harga" value="<?= $i['harga']; ?>">
+              <?= form_error('harga', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="keterangan">Keterangan</label>
+              <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $i['keterangan']; ?>">
+              <?= form_error('keterangan', '<div class="alert-danger" role="alert">', '</div>'); ?>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-        <?php endforeach; ?>
+<?php endforeach; ?>
+
+<div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="barangLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="barang">Tambah Data Transaksi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('Owner/tambah_transaksi/');?>" method="POST">
+      <div class="modal-body">
+            <div class="form-group">
+              <label for="tanggal">Tanggal</label>
+              <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= date("Y-m-d");?>">
+              <?= form_error('tanggal', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="harga">Harga</label>
+              <input type="number" class="form-control" id="harga" name="harga" value="<?= $i['harga']; ?>">
+              <?= form_error('harga', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="keterangan">Keterangan</label>
+              <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $i['keterangan']; ?>">
+              <?= form_error('keterangan', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Tambah</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

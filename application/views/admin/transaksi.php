@@ -7,8 +7,15 @@
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tabel Data Transaksi</h6>
+          <div class="card-header py-3">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Transaksi</h6>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                  <a href="" data-toggle="modal" data-target="#tambah" class="btn btn-info btn-sm"><i class="fa fa-fw fa-plus"></i> Tambah</a>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">

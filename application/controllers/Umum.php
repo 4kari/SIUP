@@ -7,7 +7,6 @@ class Umum extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_umum');
-        $this->load->library('form_validation');
         if ($this->session->userdata('level')) {
             redirect('Auth');
         }
@@ -15,7 +14,7 @@ class Umum extends CI_Controller
     public function index()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[8]', ['min_length' => 'password terlalu pendek']);
 
         if ($this->form_validation->run() == false) {
             $data['judul'] = "SIUP - Login";
@@ -30,21 +29,8 @@ class Umum extends CI_Controller
     {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-
-        // mengecek user didalam database
-        $user = $this->db->get_where('user', ['username' => $username])->row_array();
-
-        if ($user) {
-            if ($this->model_umum->ceklogin($username, $password)) {
-                $this->session->set_flashdata('pesan', 'Login berhasil');
-            } else {
-                $this->session->set_flashdata('pesan', 'Password Salah !');
-                redirect('Umum');
-            }
-        } else {
-            $this->session->set_flashdata('pesan', 'User belum terdaftar');
-            redirect('Umum');
-        }
+        $this->model_umum->ceklogin($username, $password);
+        redirect('umum');
     }
 
     public function tdaftar()
@@ -60,7 +46,6 @@ class Umum extends CI_Controller
         $this->form_validation->set_rules('username', 'username', 'required|trim|is_unique[user.username]', [
             'is_unique' => 'Username ini sudah digunakan!'
         ]);
-        //validasi nanti diganti JS
         $this->form_validation->set_rules('fname', 'fname', 'required|trim');
         $this->form_validation->set_rules('lname', 'lname', 'required|trim');
         $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[8]', ['min_length' => 'password terlalu pendek']);
