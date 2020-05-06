@@ -8,7 +8,14 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tabel Data Transaksi</h6>
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                <h6 class="m-0 font-weight-bold text-primary">Tabel Data User</h6>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                  <a href="" data-toggle="modal" data-target="#tambah" class="btn btn-info btn-sm"><i class="fa fa-fw fa-plus"></i> Tambah</a>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -32,6 +39,15 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                    <?php if (empty($Muser)) : ?>
+                      <tr>
+                        <td colspan="12">
+                          <div class="alert alert-danger" role="alert">
+                            Data not found!
+                          </div>
+                        </td>
+                      </tr>
+                    <?php endif; ?>
                     <?php foreach ($Muser as $item) : ?>
                       <tr>
                         <td><?= $item['nama_user']; ?></td>
@@ -40,8 +56,7 @@
                         <td><?= $item['gambar']; ?></td>
                         <td>
                           <a href="" data-toggle="modal" data-target="#user<?= $item['username']; ?>" class="btn btn-success btn-sm"><i class="fa fa-fw fa-edit"></i>Edit</a>
-                          <a href="<? //echo base_url() . 'admin/deletebarang/' . $item['id'] 
-                                    ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i>Delete</a>
+                          <a href="<?=base_url() . 'admin/hapus_user/' . $item['username']; ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i>Delete</a>
                         </td>
                       </tr>
                     <?php endforeach; ?>
@@ -56,47 +71,96 @@
 
         </div>
         <!-- End of Main Content -->
-        <?php foreach ($Muser as $item) : ?>
-          <!-- Modal Edit -->
-          <div class="modal fade" id="user<?= $item['username'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="dosenlabel">Edit Data User</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <form action="<?= base_url('admin/updateUser/' . $item['username']); ?>" method="POST">
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="nama">Nama User</label>
-                      <input type="text" class="form-control" id="nama" name="nama" value="<?= $item['nama_user']; ?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="username">Username</label>
-                      <input type="text" class="form-control" id="username" name="username" value="<?= $item['username']; ?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="level">Level User</label>
-                      <select name="level" id="level" class="form-control">
-                        <?php foreach ($level as $l) {
-                          if ($item['level'] == $l['level_user']) {
-                            echo "<option value='$l[id]' selected>$l[level_user]</option>";
-                          } else {
-                            echo "<option value='$l[id]'>$l[level_user]</option>";
-                          }
-                        }
-                        ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                  </div>
-                </form>
-              </div>
+<?php foreach ($Muser as $item) : ?>
+  <!-- Modal Edit -->
+  <div class="modal fade" id="user<?= $item['username'] ?>" tabindex="-1" role="dialog" aria-labelledby="userlabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userlabel">Edit Data User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="<?= base_url('admin/edit_user/' . $item['username']); ?>" method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="nama_user">Nama User</label>
+              <input type="text" class="form-control" id="nama_user" name="nama_user" value="<?= $item['nama_user']; ?>">
+              <?= form_error('nama_user', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" name="username" value="<?= $item['username']; ?>">
+              <?= form_error('username', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="level">Level User</label>
+              <select name="level" id="level" class="form-control">
+                <?php foreach ($level as $l) {
+                  if ($item['level'] == $l['level_user']) {
+                    echo "<option value='$l[id]' selected>$l[level_user]</option>";
+                  } else {
+                    echo "<option value='$l[id]'>$l[level_user]</option>";
+                  }
+                }
+                ?>
+              </select>
+              <?= form_error('level', '<div class="alert-danger" role="alert">', '</div>'); ?>
             </div>
           </div>
-        <?php endforeach; ?>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<?php endforeach; ?>
+
+<div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="barangLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="barang">Tambah Data Transaksi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('admin/edit_user/' . $item['username']); ?>" method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="nama_user">Nama User</label>
+              <input type="text" class="form-control" id="nama_user" name="nama_user" placeholder="Nama">
+              <?= form_error('nama_user', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+              <?= form_error('username', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="password">Password User</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+              <?= form_error('password', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="level">Level User</label>
+              <select name="level" id="level" class="form-control">
+                <?php foreach ($level as $l) {
+                  echo "<option value='$l[id]'>$l[level_user]</option>";
+                }
+                ?>
+              </select>
+              <?= form_error('level', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Tambah</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>

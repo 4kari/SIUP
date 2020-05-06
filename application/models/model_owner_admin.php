@@ -1,6 +1,50 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class model_owner extends CI_Model {
+class model_owner_admin extends CI_Model {
+    public function getuserdata()
+	{
+        $query="SELECT u.nama_user, u.username, l.level_user as level, u.gambar
+        FROM user u, level l
+        where u.level = l.id
+        ";
+        return $this->db->query($query)->result_array();
+    }
+    public function tambahuser(){
+        $post=$this->input->post();
+        $this->form_validation->set_rules('nama_user', 'nama_user', 'required|trim');
+        $this->form_validation->set_rules('username', 'username', 'required|trim');
+        $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[8]', ['min_length' => 'password terlalu pendek']);
+        $this->form_validation->set_rules('level', 'level', 'required|trim');
+        if ($this->form_validation->run() == true) {
+            if (!$this->db->get_where('user', ['username' => $post['username']])->row_array()){
+                $this->db->insert('user',$post);
+                $post['gambar']="test.jpg";
+                //kondisi ketika sukses menambahkan data
+            }else{
+                //kondisi ketika kode barang sudah ada
+            }
+        } else {
+            //kondisi ketika salah satu field kosong
+        }
+    }
+    public function edituser($username){
+        $post=$this->input->post();
+        $this->form_validation->set_rules('nama_user', 'nama_user', 'required|trim');
+        $this->form_validation->set_rules('username', 'username', 'required|trim');
+        $this->form_validation->set_rules('level', 'level', 'required|trim');
+        if ($this->form_validation->run() == true) {
+            $data=$this->db->get_where('user', ['username' => $post['username']])->row_array();
+            if (!$data || $data['username']==$username){
+                $this->db->where('username', $username);
+                $this->db->update('user', $post);
+                //kondisi ketika sukses menambahkan data
+            }else{
+                //kondisi ketika kode barang sudah ada
+            }
+        } else {
+                //kondisi ketika salah satu field kosong
+        }
+    }
     public function tambahbarang(){
         $post=$this->input->post();
         $this->form_validation->set_rules('id', 'id', 'required|trim');

@@ -9,7 +9,7 @@ class Owner extends CI_Controller
         if ($this->session->userdata('level') != 2) {
             redirect('Auth');
         }
-        $this->load->model('model_owner', 'model');
+        $this->load->model('model_owner_admin', 'model');
     }
     public function data()
     {

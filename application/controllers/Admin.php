@@ -10,7 +10,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             redirect('Auth');
         }
-        $this->load->model('model_admin', 'model');
+        $this->load->model('model_owner_admin', 'model');
     }
 
     public function data()
@@ -19,6 +19,7 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['active'] = 'default';
         $data['header'] = 'default';
+        $data['start'] = 0;
         return $data;
     }
     public function index()
@@ -45,6 +46,18 @@ class Admin extends CI_Controller
         $this->load->view('admin/transaksi');
         $this->load->view('admin/template/footer');
     }
+    public function tambah_transaksi(){
+        $this->model->tambahtransaksi();
+        redirect ('Admin/transaksi');
+    }
+    public function hapus_transaksi($id){
+        $this->db->delete('transaksi', array('id' => $id));
+        redirect ('Admin/transaksi');
+    }
+    public function edit_transaksi($id){
+        $this->model->edittransaksi($id);
+        redirect ('Admin/transaksi');
+    }
     public function barang()
     {
         $data = $this->data();
@@ -57,10 +70,22 @@ class Admin extends CI_Controller
         $this->load->view('admin/barang');
         $this->load->view('admin/template/footer');
     }
+    public function tambah_barang(){
+        $this->model->tambahbarang();
+        redirect ('Admin/barang');
+    }
+    public function hapus_barang($id){
+        $this->db->delete('barang', array('id' => $id));
+        redirect ('Admin/barang');
+    }
+    public function edit_barang($id){
+        $this->model->editbarang($id);
+        redirect ('Admin/barang');
+    }
     public function Management_user()
     {
         $data = $this->data();
-        $data['header'] = 'SI-UP - Data Barang';
+        $data['header'] = 'SI-UP - Data User';
         $data['active'] = 'Management User';
         $data['Muser'] = $this->model->getuserdata();
         $data['level'] = $this->db->get('level')->result_array();
@@ -69,5 +94,17 @@ class Admin extends CI_Controller
         $this->load->view('admin/template/topbar');
         $this->load->view('admin/user');
         $this->load->view('admin/template/footer');
+    }
+    public function tambah_user(){
+        $this->model->tambahuser();
+        redirect ('Admin/Management_user');
+    }
+    public function hapus_user($username){
+        $this->db->delete('user', array('username' => $username));
+        redirect ('Admin/Management_user');
+    }
+    public function edit_user($username){
+        $this->model->edituser($username);
+        redirect ('Admin/Management_user');
     }
 }

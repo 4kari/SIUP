@@ -37,17 +37,27 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                  <?php foreach ($transaksi as $item) : ?>
-                    <tr>
-                      <td><?=$item['tanggal'];?></td>
-                      <td><?=$item['harga'];?></td>
-                      <td><?=$item['keterangan'];?></td>
-                      <td>
-                      <a href="" data-toggle="modal" data-target="#transaksi<?= $item['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-fw fa-edit"></i>Edit</a>
-                      <a href="<?//echo base_url() . 'admin/deletebarang/' . $item['id'] ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i>Delete</a>
-                      </td>
-                    </tr>
-                  <?php endforeach;?>
+                  <?php if (empty($transaksi)) : ?>
+                      <tr>
+                        <td colspan="12">
+                          <div class="alert alert-danger" role="alert">
+                            Data not found!
+                          </div>
+                        </td>
+                      </tr>
+                    <?php endif; ?>
+                    <?php foreach ($transaksi as $i) : ?>
+                      <tr>
+                        <th scope="row"><?= ++$start; ?></th>
+                        <td><?= $i['tanggal']; ?></td>
+                        <td><?= $i['harga']; ?></td>
+                        <td><?= $i['keterangan']; ?></td>
+                        <td>
+                          <a href="" data-toggle="modal" data-target="#transaksi<?= $i['id']; ?>" class="btn btn-success btn-sm"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                          <a href="<?= base_url() . 'Admin/hapus_transaksi/' . $i['id']; ?>" class="btn btn-danger btn-sm deleteDosen"><i class="fa fa-fw fa-trash"></i> Delete</a>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
@@ -57,42 +67,82 @@
         </div>
         <!-- /.container-fluid -->
 
-      </div>
-      <!-- End of Main Content -->
-<?php foreach ($transaksi as $item) : ?>
+        </div>
+        <!-- End of Main Content -->
+
+<?php foreach ($transaksi as $i) :?>
 
   <!-- Modal Edit -->
-  <div class="modal fade" id="transaksi<?= $item['id'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade" id="transaksi<?= $i['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="TransaksiLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="dosenlabel">Edit Data Transaksi</h5>
+          <h5 class="modal-title" id="transaksi">Edit Data Transaksi</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="<?= base_url('admin/updateUser/' . $item['id']); ?>" method="POST">
+        <form action="<?= base_url('Admin/edit_transaksi/' . $i['id']); ?>" method="POST">
           <div class="modal-body">
             <div class="form-group">
-              <label for="nip">Tanggal</label>
-              <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?= $item['tanggal']; ?>">
+              <label for="tanggal">Tanggal</label>
+              <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= $i['tanggal']; ?>">
+              <?= form_error('tanggal', '<div class="alert-danger" role="alert">', '</div>'); ?>
             </div>
             <div class="form-group">
-              <label for="nip">Harga</label>
-              <input type="text" class="form-control" id="harga" name="harga" value="<?= $item['harga']; ?>">
+              <label for="harga">Harga</label>
+              <input type="number" class="form-control" id="harga" name="harga" value="<?= $i['harga']; ?>">
+              <?= form_error('harga', '<div class="alert-danger" role="alert">', '</div>'); ?>
             </div>
             <div class="form-group">
-              <label for="nama">Keterangan</label>
-              <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $item['keterangan']; ?>">
-              <?= form_error('nama', '<div class="alert-danger" role="alert">', '</div>'); ?>
+              <label for="keterangan">Keterangan</label>
+              <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $i['keterangan']; ?>">
+              <?= form_error('keterangan', '<div class="alert-danger" role="alert">', '</div>'); ?>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
             <button type="submit" class="btn btn-primary">Edit</button>
           </div>
         </form>
       </div>
     </div>
   </div>
-<?php endforeach;?>
+
+<?php endforeach; ?>
+
+<div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="barangLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="barang">Tambah Data Transaksi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('Admin/tambah_transaksi/');?>" method="POST">
+      <div class="modal-body">
+            <div class="form-group">
+              <label for="tanggal">Tanggal</label>
+              <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= date("Y-m-d");?>">
+              <?= form_error('tanggal', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="harga">Harga</label>
+              <input type="number" class="form-control" id="harga" name="harga" value="<?= $i['harga']; ?>">
+              <?= form_error('harga', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+            <div class="form-group">
+              <label for="keterangan">Keterangan</label>
+              <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $i['keterangan']; ?>">
+              <?= form_error('keterangan', '<div class="alert-danger" role="alert">', '</div>'); ?>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Tambah</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
