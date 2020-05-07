@@ -102,8 +102,10 @@ class model_owner_admin extends CI_Model
         if ($this->form_validation->run() == true) {
             $this->db->insert('transaksi', $post);
             //kondisi ketika sukses menambahkan data
+            $this->session->set_flashdata('pesan', 'Transaksi baru berhasil ditambahkan');
         } else {
             //kondisi ketika salah satu field kosong
+            $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan transaksi');
         }
     }
     public function edittransaksi($id)
@@ -116,8 +118,10 @@ class model_owner_admin extends CI_Model
             $this->db->where('id', $id);
             $this->db->update('transaksi', $post);
             //kondisi ketika sukses menambahkan data
+            $this->session->set_flashdata('pesan', 'Edit Data Transaksi berhasil');
         } else {
             //kondisi ketika salah satu field kosong
+            $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan edit transaksi');
         }
     }
 }

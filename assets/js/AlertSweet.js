@@ -205,3 +205,80 @@ if (flashdata == 'Edit Data Barang berhasil') {
         timer: 2000
     })
 }
+
+//Tombol konfirmasi delete Transaksi
+$('.DelTrans').on('click', function (e) {
+    e.preventDefault();
+    const nama = $(this).data('nama');
+    const href = $(this).attr('href');
+    Swal.fire({
+        title: 'Hapus Transaksi',
+        html: "Apakah anda yakin untuk menghapus transaksi " + '<b>' + nama + '</b>' + " ?",
+        icon: 'warning',
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya',
+        cancelmButtonText: 'Tidak'
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+});
+
+//Delete Transaksi berhasil
+if (flashdata == 'Hapus Transaksi berhasil') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+//Tambah Transaksi berhasil
+if (flashdata == 'Transaksi baru berhasil ditambahkan') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+//Notifikasi ada field kosong (transaksi)
+if (flashdata == 'Harap mengisi seluruh inputan transaksi') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Tambah Transaksi tidak berhasil',
+        text: flashdata,
+        showConfirmButton: true,
+    })
+}
+
+//Edit Data Transaksi berhasil
+if (flashdata == 'Edit Data Transaksi berhasil') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+//Notifikasi ada field kosong (edit transaksi)
+if (flashdata == 'Harap mengisi seluruh inputan edit transaksi') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Edit Transaksi tidak berhasil',
+        text: flashdata,
+        showConfirmButton: true,
+    })
+}

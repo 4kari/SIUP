@@ -54,6 +54,7 @@ class Admin extends CI_Controller
     public function hapus_transaksi($id)
     {
         $this->db->delete('transaksi', array('id' => $id));
+        $this->session->set_flashdata('pesan', 'Hapus Transaksi berhasil');
         redirect('Admin/transaksi');
     }
     public function edit_transaksi($id)
