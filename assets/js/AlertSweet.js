@@ -1,14 +1,31 @@
 const flashdata = $('.flash-data').data('flashdata');
-//LOGIN berhasil
-if (flashdata == 'Login berhasil') {
+var sukses=['Login berhasil','Menambah User baru berhasil','Edit Data User berhasil','Menghapus User berhasil',
+'Barang berhasil ditambahkan','Barang berhasil dihapus','Edit Data Barang berhasil','Hapus Transaksi berhasil',
+'Transaksi baru berhasil ditambahkan','Edit Data Transaksi berhasil'];
+for (i=0;i<sukses.length;i++){
+    if (flashdata == sukses[i]) {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: flashdata,
+            showConfirmButton: false,
+            timer: 2000
+        })
+        break;
+    }
+}
+//Pendaftaran Berhasil
+if (flashdata == 'Pendaftaran Sukses !') {
     Swal.fire({
         position: 'center',
         icon: 'success',
         title: flashdata,
+        text: 'Silahkan lakukan login',
         showConfirmButton: false,
         timer: 2000
     })
 }
+
 
 //LOGIN gagal (user belum terdaftar)
 if (flashdata == 'User belum terdaftar') {
@@ -31,28 +48,6 @@ if (flashdata == 'Password Salah !') {
         showConfirmButton: true,
     })
 }
-//Pendaftaran Berhasil
-if (flashdata == 'Pendaftaran Sukses !') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        text: 'Silahkan lakukan login',
-        showConfirmButton: false,
-        timer: 2000
-    })
-}
-
-//Penambahan User Berhasil
-if (flashdata == 'Menambah User baru berhasil') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        showConfirmButton: false,
-        timer: 2000
-    })
-}
 
 //Tambah user gagal (user telah terdaftar)
 if (flashdata == 'Username ini sudah terdaftar') {
@@ -61,16 +56,6 @@ if (flashdata == 'Username ini sudah terdaftar') {
         icon: 'error',
         title: 'Menambahkan User tidak berhasil',
         text: flashdata,
-        showConfirmButton: true,
-    })
-}
-
-//Edit data user berhasil
-if (flashdata == 'Edit Data User berhasil') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
         showConfirmButton: true,
     })
 }
@@ -119,26 +104,6 @@ $('.DelUser').on('click', function (e) {
     })
 });
 
-//Delete User berhasil
-if (flashdata == 'Menghapus User berhasil') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        showConfirmButton: true,
-    })
-}
-
-//Tambah barang berhasil
-if (flashdata == 'Barang berhasil ditambahkan') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        showConfirmButton: false,
-        timer: 2000
-    })
-}
 
 //Tombol konfirmasi delete barang
 $('.DelBarang').on('click', function (e) {
@@ -162,16 +127,6 @@ $('.DelBarang').on('click', function (e) {
     })
 });
 
-//Delete Barang berhasil
-if (flashdata == 'Barang berhasil dihapus') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        showConfirmButton: false,
-        timer: 2000
-    })
-}
 
 //Tambah barang gagal (barang telah terdaftar)
 if (flashdata == 'Barang sudah pernah ditambahkan') {
@@ -195,16 +150,6 @@ if (flashdata == 'Harap mengisi seluruh inputan barang') {
     })
 }
 
-//Edit Data Barang berhasil
-if (flashdata == 'Edit Data Barang berhasil') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        showConfirmButton: false,
-        timer: 2000
-    })
-}
 
 //Tombol konfirmasi delete Transaksi
 $('.DelTrans').on('click', function (e) {
@@ -228,28 +173,6 @@ $('.DelTrans').on('click', function (e) {
     })
 });
 
-//Delete Transaksi berhasil
-if (flashdata == 'Hapus Transaksi berhasil') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        showConfirmButton: false,
-        timer: 2000
-    })
-}
-
-//Tambah Transaksi berhasil
-if (flashdata == 'Transaksi baru berhasil ditambahkan') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        showConfirmButton: false,
-        timer: 2000
-    })
-}
-
 //Notifikasi ada field kosong (transaksi)
 if (flashdata == 'Harap mengisi seluruh inputan transaksi') {
     Swal.fire({
@@ -258,17 +181,6 @@ if (flashdata == 'Harap mengisi seluruh inputan transaksi') {
         title: 'Tambah Transaksi tidak berhasil',
         text: flashdata,
         showConfirmButton: true,
-    })
-}
-
-//Edit Data Transaksi berhasil
-if (flashdata == 'Edit Data Transaksi berhasil') {
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: flashdata,
-        showConfirmButton: false,
-        timer: 2000
     })
 }
 
@@ -282,3 +194,110 @@ if (flashdata == 'Harap mengisi seluruh inputan edit transaksi') {
         showConfirmButton: true,
     })
 }
+
+
+// ================================sudah diganti array======================================
+// //LOGIN berhasil
+// if (flashdata == 'Login berhasil') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: false,
+//         timer: 2000
+//     })
+// }
+// //Penambahan User Berhasil
+// if (flashdata == 'Menambah User baru berhasil') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: false,
+//         timer: 2000
+//     })
+// }
+
+// //Edit data user berhasil
+// if (flashdata == 'Edit Data User berhasil') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: true,
+//     })
+// }
+
+// //Delete User berhasil
+// if (flashdata == 'Menghapus User berhasil') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: true,
+//     })
+// }
+
+// //Tambah barang berhasil
+// if (flashdata == 'Barang berhasil ditambahkan') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: false,
+//         timer: 2000
+//     })
+// }
+// //Delete Barang berhasil
+// if (flashdata == 'Barang berhasil dihapus') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: false,
+//         timer: 2000
+//     })
+// }
+// //Edit Data Barang berhasil
+// if (flashdata == 'Edit Data Barang berhasil') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: false,
+//         timer: 2000
+//     })
+// }
+
+// //Delete Transaksi berhasil
+// if (flashdata == 'Hapus Transaksi berhasil') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: false,
+//         timer: 2000
+//     })
+// }
+
+// //Tambah Transaksi berhasil
+// if (flashdata == 'Transaksi baru berhasil ditambahkan') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: false,
+//         timer: 2000
+//     })
+// }
+
+// //Edit Data Transaksi berhasil
+// if (flashdata == 'Edit Data Transaksi berhasil') {
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: flashdata,
+//         showConfirmButton: false,
+//         timer: 2000
+//     })
+// }
