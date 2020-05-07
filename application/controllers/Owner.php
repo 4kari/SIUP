@@ -45,17 +45,21 @@ class Owner extends CI_Controller
         $this->load->view('owner/transaksi');
         $this->load->view('owner/template/footer');
     }
-    public function tambah_transaksi(){
+    public function tambah_transaksi()
+    {
         $this->model->tambahtransaksi();
-        redirect ('Owner/transaksi');
+        redirect('Owner/transaksi');
     }
-    public function hapus_transaksi($id){
+    public function hapus_transaksi($id)
+    {
         $this->db->delete('transaksi', array('id' => $id));
-        redirect ('Owner/transaksi');
+        $this->session->set_flashdata('pesan', 'Hapus Transaksi berhasil');
+        redirect('Owner/transaksi');
     }
-    public function edit_transaksi($id){
-        $this->model->edittransaksi();
-        redirect ('Owner/transaksi');
+    public function edit_transaksi($id)
+    {
+        $this->model->edittransaksi($id);
+        redirect('Owner/transaksi');
     }
     public function barang()
     {
@@ -70,16 +74,19 @@ class Owner extends CI_Controller
         $this->load->view('owner/barang');
         $this->load->view('owner/template/footer');
     }
-    public function tambah_barang(){
+    public function tambah_barang()
+    {
         $this->model->tambahbarang();
-        redirect ('Owner/barang');
+        redirect('Owner/barang');
     }
-    public function hapus_barang($id){
+    public function hapus_barang($id)
+    {
         $this->db->delete('barang', array('id' => $id));
-        redirect ('Owner/barang');
+        redirect('Owner/barang');
     }
-    public function edit_barang($id){
+    public function edit_barang($id)
+    {
         $this->model->editbarang($id);
-        redirect ('Owner/barang');
+        redirect('Owner/barang');
     }
 }
