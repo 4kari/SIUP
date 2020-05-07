@@ -62,11 +62,14 @@ class model_owner_admin extends CI_Model
             if (!$this->db->get_where('barang', ['id' => $post['id']])->row_array()) {
                 $this->db->insert('barang', $post);
                 //kondisi ketika sukses menambahkan data
+                $this->session->set_flashdata('pesan', 'Barang berhasil ditambahkan');
             } else {
                 //kondisi ketika kode barang sudah ada
+                $this->session->set_flashdata('pesan', 'Barang sudah pernah ditambahkan');
             }
         } else {
             //kondisi ketika salah satu field kosong
+            $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan barang');
         }
     }
     public function editbarang($id)
@@ -80,11 +83,14 @@ class model_owner_admin extends CI_Model
                 $this->db->where('id', $id);
                 $this->db->update('barang', $post);
                 //kondisi ketika sukses menambahkan data
+                $this->session->set_flashdata('pesan', 'Edit Data Barang berhasil');
             } else {
                 //kondisi ketika kode barang sudah ada
+                $this->session->set_flashdata('pesan', 'Barang sudah pernah ditambahkan');
             }
         } else {
             //kondisi ketika salah satu field kosong
+            $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan barang');
         }
     }
     public function tambahtransaksi()

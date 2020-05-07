@@ -128,3 +128,80 @@ if (flashdata == 'Menghapus User berhasil') {
         showConfirmButton: true,
     })
 }
+
+//Tambah barang berhasil
+if (flashdata == 'Barang berhasil ditambahkan') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+//Tombol konfirmasi delete barang
+$('.DelBarang').on('click', function (e) {
+    e.preventDefault();
+    const nama = $(this).data('nama');
+    const href = $(this).attr('href');
+    Swal.fire({
+        title: 'Hapus Barang',
+        html: "Apakah anda yakin untuk menghapus  " + '<b>' + nama + '</b>' + " ?",
+        icon: 'warning',
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya',
+        cancelmButtonText: 'Tidak'
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+});
+
+//Delete Barang berhasil
+if (flashdata == 'Barang berhasil dihapus') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+//Tambah barang gagal (barang telah terdaftar)
+if (flashdata == 'Barang sudah pernah ditambahkan') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Tambah Barang tidak berhasil',
+        text: flashdata,
+        showConfirmButton: true,
+    })
+}
+
+//Notifikasi ada field kosong (barang)
+if (flashdata == 'Harap mengisi seluruh inputan barang') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Tambah Barang tidak berhasil',
+        text: flashdata,
+        showConfirmButton: true,
+    })
+}
+
+//Edit Data Barang berhasil
+if (flashdata == 'Edit Data Barang berhasil') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
