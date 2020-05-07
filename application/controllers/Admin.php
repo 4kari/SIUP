@@ -46,17 +46,20 @@ class Admin extends CI_Controller
         $this->load->view('admin/transaksi');
         $this->load->view('admin/template/footer');
     }
-    public function tambah_transaksi(){
+    public function tambah_transaksi()
+    {
         $this->model->tambahtransaksi();
-        redirect ('Admin/transaksi');
+        redirect('Admin/transaksi');
     }
-    public function hapus_transaksi($id){
+    public function hapus_transaksi($id)
+    {
         $this->db->delete('transaksi', array('id' => $id));
-        redirect ('Admin/transaksi');
+        redirect('Admin/transaksi');
     }
-    public function edit_transaksi($id){
+    public function edit_transaksi($id)
+    {
         $this->model->edittransaksi($id);
-        redirect ('Admin/transaksi');
+        redirect('Admin/transaksi');
     }
     public function barang()
     {
@@ -70,17 +73,20 @@ class Admin extends CI_Controller
         $this->load->view('admin/barang');
         $this->load->view('admin/template/footer');
     }
-    public function tambah_barang(){
+    public function tambah_barang()
+    {
         $this->model->tambahbarang();
-        redirect ('Admin/barang');
+        redirect('Admin/barang');
     }
-    public function hapus_barang($id){
+    public function hapus_barang($id)
+    {
         $this->db->delete('barang', array('id' => $id));
-        redirect ('Admin/barang');
+        redirect('Admin/barang');
     }
-    public function edit_barang($id){
+    public function edit_barang($id)
+    {
         $this->model->editbarang($id);
-        redirect ('Admin/barang');
+        redirect('Admin/barang');
     }
     public function Management_user()
     {
@@ -95,16 +101,20 @@ class Admin extends CI_Controller
         $this->load->view('admin/user');
         $this->load->view('admin/template/footer');
     }
-    public function tambah_user(){
+    public function tambah_user()
+    {
         $this->model->tambahuser();
-        redirect ('Admin/Management_user');
+        redirect('Admin/Management_user');
     }
-    public function hapus_user($username){
+    public function hapus_user($username)
+    {
         $this->db->delete('user', array('username' => $username));
-        redirect ('Admin/Management_user');
+        $this->session->set_flashdata('pesan', 'Menghapus User berhasil');
+        redirect('Admin/Management_user');
     }
-    public function edit_user($username){
+    public function edit_user($username)
+    {
         $this->model->edituser($username);
-        redirect ('Admin/Management_user');
+        redirect('Admin/Management_user');
     }
 }

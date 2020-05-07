@@ -45,6 +45,7 @@
               </div> -->
               <div class="text-center">
                 <a class="small" href="<?= base_url('Umum'); ?>">Sudah Punya Akun? Login!</a>
+
               </div>
             </div>
           </div>

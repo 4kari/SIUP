@@ -42,3 +42,89 @@ if (flashdata == 'Pendaftaran Sukses !') {
         timer: 2000
     })
 }
+
+//Penambahan User Berhasil
+if (flashdata == 'Menambah User baru berhasil') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+//Tambah user gagal (user telah terdaftar)
+if (flashdata == 'Username ini sudah terdaftar') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Menambahkan User tidak berhasil',
+        text: flashdata,
+        showConfirmButton: true,
+    })
+}
+
+//Edit data user berhasil
+if (flashdata == 'Edit Data User berhasil') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: true,
+    })
+}
+
+//Edit data user gagal (tidak dilakukan perubahan apa")
+if (flashdata == 'Tidak melakukan Edit Data User') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Edit Data User tidak dilakukan',
+        text: flashdata,
+        showConfirmButton: true,
+    })
+}
+
+//Notifikasi ada field kosong
+if (flashdata == 'Harap mengisi seluruh inputan') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Edit Data User tidak berhasil',
+        text: flashdata,
+        showConfirmButton: true,
+    })
+}
+
+//Tombol konfirmasi delete user
+$('.DelUser').on('click', function (e) {
+    e.preventDefault();
+    const nama = $(this).data('nama');
+    const href = $(this).attr('href');
+    Swal.fire({
+        title: 'Hapus User',
+        html: "Apakah anda yakin untuk menghapus User  " + '<b>' + nama + '</b>' + " ?",
+        icon: 'warning',
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya',
+        cancelmButtonText: 'Tidak'
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+});
+
+//Delete User berhasil
+if (flashdata == 'Menghapus User berhasil') {
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: flashdata,
+        showConfirmButton: true,
+    })
+}
