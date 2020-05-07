@@ -82,6 +82,7 @@ class Owner extends CI_Controller
     public function hapus_barang($id)
     {
         $this->db->delete('barang', array('id' => $id));
+        $this->session->set_flashdata('pesan', 'Barang berhasil dihapus');
         redirect('Owner/barang');
     }
     public function edit_barang($id)
