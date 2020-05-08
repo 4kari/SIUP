@@ -25,6 +25,16 @@ if (flashdata == 'Pendaftaran Sukses !') {
         timer: 2000
     })
 }
+//pendaftaran gagal
+if (flashdata == 'Pendaftaran Gagal !') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: flashdata,
+        text: 'Akun tidak didaftarkan',
+        showConfirmButton: true,
+    })
+}
 
 
 //LOGIN gagal (user belum terdaftar)

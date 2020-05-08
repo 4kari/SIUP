@@ -57,6 +57,7 @@
 <!-- Sweet Alert js load -->
 <script src="<?= base_url('assets/'); ?>js/sweet/sweetalert2.all.min.js"></script>
 <script src="<?= base_url('assets/'); ?>js/AlertSweet.js"></script>
+<script src="<?= base_url('assets/'); ?>js/base.js"></script>
 
 
 <script>

@@ -21,17 +21,35 @@ class model_umum extends CI_Model
 			$this->session->set_flashdata('pesan', 'User belum terdaftar');
 		}
 	}
-	public function tambah($username, $pass, $fname, $lname, $gambar)
+	public function tambah()
 	{
-		$data = [
-			'nama_user' => $fname . " " . $lname,
-			'username' => $username,
-			'password' => $pass,
-			'level' => 3,
-			'gambar' => $gambar
-		];
-		$this->db->insert('user', $data);
-		$this->session->set_flashdata('pesan', 'Pendaftaran Sukses !');
-		redirect('umum');
+		$post=$this->input->post();
+		$username = $post['username'];
+		$password = password_hash($post['password'], PASSWORD_DEFAULT);
+		$fname = $post['fname'];
+		$lname = $post['lname'];
+		$gambar = 'test.jpg';
+			
+		$this->form_validation->set_rules('username', 'username', 'required|trim|is_unique[user.username]', [
+            'is_unique' => 'Username ini sudah digunakan!'
+        ]);
+        $this->form_validation->set_rules('fname', 'fname', 'required|trim');
+        $this->form_validation->set_rules('lname', 'lname', 'required|trim');
+        $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[8]', ['min_length' => 'password terlalu pendek']);
+        $this->form_validation->set_rules('Rpassword', 'Rpassword', 'required|trim|min_length[8]', ['min_length' => 'password terlalu pendek']);
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('pesan', 'Pendaftaran Gagal !');
+        } else {            
+			$data = [
+				'nama_user' => $fname . " " . $lname,
+				'username' => $username,
+				'password' => $password,
+				'level' => 3,
+				'gambar' => $gambar
+			];
+			$this->db->insert('user', $data);
+			$this->session->set_flashdata('pesan', 'Pendaftaran Sukses !');
+		}
 	}
 }

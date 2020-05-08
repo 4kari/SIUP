@@ -6,7 +6,7 @@ class Umum extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('model_umum');
+        $this->load->model('model_umum','model');
         if ($this->session->userdata('level')) {
             redirect('Auth');
         }
@@ -29,7 +29,7 @@ class Umum extends CI_Controller
     {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $this->model_umum->ceklogin($username, $password);
+        $this->model->ceklogin($username, $password);
         redirect('umum');
     }
 
@@ -43,23 +43,7 @@ class Umum extends CI_Controller
     }
     public function daftarakun()
     {
-        $this->form_validation->set_rules('username', 'username', 'required|trim|is_unique[user.username]', [
-            'is_unique' => 'Username ini sudah digunakan!'
-        ]);
-        $this->form_validation->set_rules('fname', 'fname', 'required|trim');
-        $this->form_validation->set_rules('lname', 'lname', 'required|trim');
-        $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[8]', ['min_length' => 'password terlalu pendek']);
-        $this->form_validation->set_rules('Rpassword', 'Rpassword', 'required|trim|min_length[8]', ['min_length' => 'password terlalu pendek']);
-
-        if ($this->form_validation->run() == false) {
-            $this->tdaftar();
-        } else {
-            $username = $this->input->post('username');
-            $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-            $fname = $this->input->post('fname');
-            $lname = $this->input->post('lname');
-            $gambar = 'test.jpg';
-            $this->model_umum->tambah($username, $password, $fname, $lname, $gambar);
-        }
+        $this->model->tambah();
+		redirect('umum');
     }
 }
