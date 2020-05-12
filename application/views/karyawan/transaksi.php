@@ -21,13 +21,13 @@
               </div>
 
               <div id="form-tanggal">
-                <label>Tanggal</label><br>
+                <label class="ml-1">Tanggal</label><br>
                 <input type="text" name="tanggal" class="input-tanggal" style="margin:5px" autocomplete="off" />
                 <br /><br />
               </div>
 
               <div id="form-bulan" class="form-group">
-                <label>Bulan</label><br>
+                <label class="ml-1">Bulan</label><br>
                 <select name="bulan" class="form-control" style="width: 200px; margin:5px">
                   <option value="">Pilih</option>
                   <option value="1">Januari</option>
@@ -46,7 +46,7 @@
               </div>
 
               <div id="form-tahun" class="form-group">
-                <label>Tahun</label><br>
+                <label class="ml-1">Tahun</label><br>
                 <select name="tahun" class="form-control" style="width: 200px; margin:5px">
                   <option value="">Pilih</option>
                   <?php

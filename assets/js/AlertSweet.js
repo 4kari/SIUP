@@ -1,8 +1,9 @@
 const flashdata = $('.flash-data').data('flashdata');
-var sukses=['Login berhasil','Menambah User baru berhasil','Edit Data User berhasil','Menghapus User berhasil',
-'Barang berhasil ditambahkan','Barang berhasil dihapus','Edit Data Barang berhasil','Hapus Transaksi berhasil',
-'Transaksi baru berhasil ditambahkan','Edit Data Transaksi berhasil'];
-for (i=0;i<sukses.length;i++){
+var sukses = ['Login berhasil', 'Menambah User baru berhasil', 'Edit Data User berhasil', 'Menghapus User berhasil',
+    'Barang berhasil ditambahkan', 'Barang berhasil dihapus', 'Edit Data Barang berhasil', 'Hapus Transaksi berhasil',
+    'Transaksi baru berhasil ditambahkan', 'Edit Data Transaksi berhasil'
+];
+for (i = 0; i < sukses.length; i++) {
     if (flashdata == sukses[i]) {
         Swal.fire({
             position: 'center',

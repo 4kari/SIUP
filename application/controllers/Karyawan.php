@@ -10,6 +10,7 @@ class Karyawan extends CI_Controller
             redirect('Auth');
         }
         $this->load->model('cetak_model');
+        $this->load->model('karyawan_model', 'model');
     }
     public function data()
     {
@@ -29,6 +30,11 @@ class Karyawan extends CI_Controller
         $this->load->view('karyawan/template/topbar');
         $this->load->view('karyawan/index');
         $this->load->view('karyawan/template/footer');
+    }
+    public function tambah_transaksi()
+    {
+        $this->model->tambahtransaksi();
+        redirect('karyawan/transaksi');
     }
     public function transaksi()
     {
@@ -84,6 +90,10 @@ class Karyawan extends CI_Controller
         $data = $this->data();
         $data['header'] = 'SI-UP - Data Barang';
         $data['active'] = 'Data Barang';
+
+        $data['barang'] = $this->db->get('barang')->result_array();
+        $data['start'] = 0;
+
         $this->load->view('karyawan/template/header', $data);
         $this->load->view('karyawan/template/sidebar');
         $this->load->view('karyawan/template/topbar');
