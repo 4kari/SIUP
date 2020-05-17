@@ -7,14 +7,17 @@ function hitung(time) {
     var ftagihan = document.getElementById('tagihanfield');
     var harga = document.getElementById('harga');
     var ket = document.getElementById('keterangan');
-    var ket1 = document.getElementById('keterangan1');
-    var ket2 = document.getElementById('keterangan2');
-    var ket3 = document.getElementById('keterangan3');
-    var ket4 = document.getElementById('keterangan4');
+    var ket1 = document.getElementById('satu');
+    var ket2 = document.getElementById('dua');
+    var ket3 = document.getElementById('tiga');
+    var ket4 = document.getElementById('empat');
     var hasil = (Number(barang1) * 235) + (Number(barang2) * 400) + (Number(barang3) * 600) + (Number(barang4) * 1000);
 
-    ftagihan.innerHTML = "Total : Rp. " + hasil.toString();
-    ket1.innerHTML = "Total : Rp. " + hasil.toString();
+    ftagihan.innerHTML = ": Rp. " + hasil.toString();
+    ket1.innerHTML = ": " + barang1.toString() + " x Rp. 235";
+    ket2.innerHTML = ": " + barang2.toString() + " x Rp. 400";
+    ket3.innerHTML = ": " + barang3.toString() + " x Rp. 600";
+    ket4.innerHTML = ": " + barang4.toString() + " x Rp. 1000";
 
     harga.value = hasil.toString();
     ket.value = "Hitam Putih ; " + barang1.toString() +

@@ -72,7 +72,46 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          <p id="tagihanfield">Rp. 0</p>
+          <div class="row">
+            <div class="col-lg-4">
+              Hitam Putih
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="satu">0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              1/4 Warna
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="dua">0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              1/2 Warna
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="tiga">0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              Full Warna
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="empat">0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              Total
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="tagihanfield">Total : Rp. 0</p>
+            </div>
+          </div>
           <input type="hidden" name="harga" id="harga">
           <input type="hidden" name="keterangan" id="keterangan">
           <span style="display : none">

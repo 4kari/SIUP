@@ -77,7 +77,7 @@
               Hitam Putih
             </div>
             <div class="form-group col-lg-8">
-              <input type="number" class="form-control form-control-user" name="keterangan1" id="keterangan1">
+              <p id="satu">0</p>
             </div>
           </div>
           <div class="row">
@@ -85,7 +85,7 @@
               1/4 Warna
             </div>
             <div class="form-group col-lg-8">
-              <input type="number" class="form-control form-control-user" name="keterangan2" id="keterangan2" placeholder="Jumlah Halaman" readonly value=0>
+              <p id="dua">0</p>
             </div>
           </div>
           <div class="row">
@@ -93,7 +93,7 @@
               1/2 Warna
             </div>
             <div class="form-group col-lg-8">
-              <input type="number" class="form-control form-control-user" name="keterangan3" id="keterangan3" placeholder="Jumlah Halaman" readonly value=0>
+              <p id="tiga">0</p>
             </div>
           </div>
           <div class="row">
@@ -101,11 +101,19 @@
               Full Warna
             </div>
             <div class="form-group col-lg-8">
-              <input type="number" class="form-control form-control-user" name="keterangan4" id="keterangan4" placeholder="Jumlah Halaman" readonly value=0>
+              <p id="empat">0</p>
             </div>
           </div>
-          <p id="tagihanfield">Total : Rp. 0</p>
+          <div class="row">
+            <div class="col-lg-4">
+              Total
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="tagihanfield">Total : Rp. 0</p>
+            </div>
+          </div>
           <input type="hidden" name="harga" id="harga">
+          <input type="hidden" name="keterangan" id="keterangan">
           <span style="display : none">
             <input type="date" name="tanggal" id="tanggal" value='<?= date("Y-m-d"); ?>'>
           </span>
