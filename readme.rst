@@ -1,56 +1,41 @@
 ###################
-What is CodeIgniter
+SISTEM INFORMASI UKIR PECAH (SIUP)
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
-
-*******************
-Release Information
-*******************
-
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+SIUP merupakah aplikasi berbasis web yang dibuat untuk membantu UKIR PECAH dalam memanajemen barang dan proses transaksi, sekaligus juga aplikasi ini dibuat dalam rangka memenuhi project akhir Matakuliah PPL. Di dalam Aplikasi SIUP ini telah dibagi menjadi 3 pengelola, yang pertama ada ADMIN (level tertinggi / 1), yang kedua ada Owner (Level 2), yang ketiga ada Karyawan (Level 3). Adapun fitur utamanya adalah untuk memanajemen transaksi agar karyawan dapat melaporkan kepada Owner baik dalam harian, bulanan maupun tahunan tidak lagi mencatat secara manual, melalui Aplikasi SIUP ini telah disediakan export laporan transaksi. Selain fitur yang telah disebutkan, masih ada beberapa fitur lainnya.
 
 **************************
-Changelog and New Features
+Keterangan Lanjutan
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+Aplikasi SIUP ini dibangun dengan menggunakan FrameWork CodeIgniter, PHP dengan Versi baru, tampilan dengan HTML5+CSS, JavaScript (Jquery, J Validation, Data Table & SweetAlert) dan Database MySQL. 
 
 *******************
-Server Requirements
+Informasi Tentang Repository
 *******************
 
-PHP version 5.6 or newer is recommended.
-
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+Repository ini dikelola oleh 2 orang dari kelompok project yang terdiri dari 5 orang. 1. Ahmad Khairi Ramadan (NIM 170411100099), 2. Sya'ban (NIM 170411100119) dengan mengimplementasikan desain dari 3. Moh. Irsad (NIM 170411100024), 4. Abd. Ghofar Suwarno (NIM 170411100015) dan 5. Khoirur Roshyidi (NIM 160411100144).
 
 ************
-Installation
+Kebutuhan Untuk Menjalankan Aplikasi
 ************
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
+PHP dengan version 7.0 atau yang lebih baru (sangat direkomendasikan).
+MySQL untuk menjalankan Database.
+Plugin JavaScript dengan kondisi 'Enabled'
 
 *******
-License
+Instalasi
 *******
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+Mendownload atau Cloning project dari repository ini.
+Jika meng-Cloning dari git-Bash, lakukan langsung di dalam folder htdoc (jika menggunakan XAMPP)
+Jika mendownload, extract terlebih dahulu, lalu isi dari folder SIUP-MASTER dipindahkan ke dalam htdoc (ubah nama base folder menjadi SIUP jika masih bernama SIUP-MASTER). 
+Export Database, file .db berada di dalam folder utama.
+Jalankan melalui browser masing - masing dengan url : localhost/SIUP
 
 *********
-Resources
+Referensi
 *********
 
 -  `User Guide <https://codeigniter.com/docs>`_
@@ -58,13 +43,3 @@ Resources
 -  `Community Forums <http://forum.codeigniter.com/>`_
 -  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
 -  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
