@@ -15,6 +15,7 @@ class karyawan_model extends CI_Model
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan transaksi');
+            log_message('error', 'Harap mengisi seluruh inputan transaksi');
         }
     }
 }

@@ -16,12 +16,19 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">    
+    <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-    .image-half{
-        background: url("<?= base_url('assets/'); ?>/img/test.jpg");
-        background-position: center;
-        background-size: cover;
-    }
+        .image-half {
+            background: url("<?= base_url('assets/'); ?>/img/testtt.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+    <style>
+        .image-half2 {
+            background: url("<?= base_url('assets/'); ?>/img/testt.jpg");
+            background-position: center;
+            background-size: cover;
+        }
     </style>
 </head>

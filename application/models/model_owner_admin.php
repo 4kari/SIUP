@@ -19,16 +19,18 @@ class model_owner_admin extends CI_Model
         $this->form_validation->set_rules('level', 'level', 'required|trim');
         if ($this->form_validation->run() == true) {
             if (!$this->db->get_where('user', ['username' => $post['username']])->row_array()) {
-                $post['gambar'] = "test.jpg";
+                $post['gambar'] = "up.jpg";
                 $this->db->insert('user', $post);
                 $this->session->set_flashdata('pesan', 'Menambah User baru berhasil');
             } else {
                 //kondisi ketika kode barang sudah ada
                 $this->session->set_flashdata('pesan', 'Username ini sudah terdaftar');
+                log_message('error', 'Username ini sudah terdaftar');
             }
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan');
+            log_message('error', 'Harap mengisi seluruh inputan');
         }
     }
     public function edituser($username)
@@ -47,10 +49,12 @@ class model_owner_admin extends CI_Model
             } else {
                 //kondisi ketika kode barang sudah ada
                 $this->session->set_flashdata('pesan', 'Tidak melakukan Edit Data User');
+                log_message('error', 'Tidak melakukan Edit Data User');
             }
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan');
+            log_message('error', 'Harap mengisi seluruh inputan');
         }
     }
     public function tambahbarang()
@@ -66,10 +70,12 @@ class model_owner_admin extends CI_Model
             } else {
                 //kondisi ketika kode barang sudah ada
                 $this->session->set_flashdata('pesan', 'Barang sudah pernah ditambahkan');
+                log_message('error', 'Barang sudah pernah ditambahkan');
             }
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan barang');
+            log_message('error', 'Harap mengisi seluruh inputan barang');
         }
     }
     public function editbarang($id)
@@ -87,10 +93,12 @@ class model_owner_admin extends CI_Model
             } else {
                 //kondisi ketika kode barang sudah ada
                 $this->session->set_flashdata('pesan', 'Barang sudah pernah ditambahkan');
+                log_message('error', 'Barang sudah pernah ditambahkan');
             }
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan barang');
+            log_message('error', 'Harap mengisi seluruh inputan barang');
         }
     }
     public function tambahtransaksi()
@@ -106,6 +114,7 @@ class model_owner_admin extends CI_Model
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan transaksi');
+            log_message('error', 'Harap mengisi seluruh inputan transaksi');
         }
     }
     public function edittransaksi($id)
@@ -122,6 +131,7 @@ class model_owner_admin extends CI_Model
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan edit transaksi');
+            log_message('error', 'Harap mengisi seluruh inputan edit transaksi');
         }
     }
 }

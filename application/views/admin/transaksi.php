@@ -29,15 +29,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>No</th>
-                      <th>Tanggal</th>
-                      <th>Harga</th>
-                      <th>Keterangan</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
+
                   <tbody>
                     <?php if (empty($transaksi)) : ?>
                       <tr>

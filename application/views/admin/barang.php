@@ -28,14 +28,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>No</th>
-                      <th>Id Barang</th>
-                      <th>Nama Barang</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
+
                   <tbody>
                     <?php if (empty($barang)) : ?>
                       <tr>

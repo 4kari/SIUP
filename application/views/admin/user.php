@@ -29,15 +29,7 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Nama User</th>
-                      <th>Username</th>
-                      <th>Level</th>
-                      <th>Gambar</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
+
                   <tbody>
                     <?php if (empty($Muser)) : ?>
                       <tr>

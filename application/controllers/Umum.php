@@ -6,7 +6,7 @@ class Umum extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('model_umum','model');
+        $this->load->model('model_umum', 'model');
         if ($this->session->userdata('level')) {
             redirect('Auth');
         }
@@ -44,6 +44,6 @@ class Umum extends CI_Controller
     public function daftarakun()
     {
         $this->model->tambah();
-		redirect('umum');
+        redirect('umum');
     }
 }
