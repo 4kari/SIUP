@@ -18,11 +18,10 @@ function hitung(time) {
     ket2.innerHTML = ": " + barang2.toString() + " x Rp. 400";
     ket3.innerHTML = ": " + barang3.toString() + " x Rp. 600";
     ket4.innerHTML = ": " + barang4.toString() + " x Rp. 1000";
-
+    
     harga.value = hasil.toString();
-    ket.value = "Hitam Putih ; " + barang1.toString() +
-        "hlm 1/4 Warna : " + barang2.toString() +
-        "hlm 1/2 Warna : " + barang3.toString() +
-        "hlm Full Warna : " + barang4.toString();
-
+    if (Number(barang1)!=0){ket.value +="Hitam Putih : " + barang1.toString() +"hlm ";}
+    if (Number(barang2)!=0){ket.value +="1/4 Warna : " + barang2.toString() +"hlm ";}
+    if (Number(barang3)!=0){ket.value +="1/2 Warna : " + barang3.toString() +"hlm ";}
+    if (Number(barang4)!=0){ket.value +="Full Warna : " + barang4.toString() +"hlm ";}
 }

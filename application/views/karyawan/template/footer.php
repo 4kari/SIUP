@@ -105,6 +105,11 @@
     }, false);
   })();
 </script>
+<script>
+$(document).ready(function(){
+  $("#tambah").modal('show');
+});
+</script>
 
 </body>
 

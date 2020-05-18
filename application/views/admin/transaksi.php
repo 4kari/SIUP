@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group">
                       <label for="harga">Harga</label>
-                      <input type="number" class="form-control" id="harga" name="harga" value="<?= $i['harga']; ?>" required>
+                      <input type="number" class="form-control" name="harga" value="<?= $i['harga']; ?>" required>
                       <div class="invalid-feedback">
                         Masukan Harga Transaksi
                       </div>
@@ -96,7 +96,7 @@
                     </div>
                     <div class="form-group">
                       <label for="keterangan">Keterangan</label>
-                      <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $i['keterangan']; ?>" required>
+                      <input type="text" class="form-control" name="keterangan" value="<?= $i['keterangan']; ?>" required>
                       <div class="invalid-feedback">
                         Masukan Keterangan Transaksi
                       </div>
@@ -124,38 +124,118 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form action="<?= base_url('Admin/tambah_transaksi/'); ?>" method="POST" class="needs-validation" novalidate>
+              <form>
                 <div class="modal-body">
                   <div class="form-group">
                     <label for="tanggal">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= date("Y-m-d"); ?>" required>
+                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= date("Y-m-d"); ?>" required readonly>
                     <div class="invalid-feedback">
                       Masukan Tanggal Transaksi
                     </div>
-                    <?= form_error('tanggal', '<div class="alert-danger" role="alert">', '</div>'); ?>
                   </div>
-                  <div class="form-group">
-                    <label for="harga">Harga</label>
-                    <input type="number" class="form-control" id="harga" name="harga" required>
-                    <div class="invalid-feedback">
-                      Masukan Harga Transaksi
+                  <div class="row">
+                    <div class="col-lg-4">
+                      Hitam Putih
                     </div>
-                    <?= form_error('harga', '<div class="alert-danger" role="alert">', '</div>'); ?>
+                    <div class="form-group col-lg-8">
+                      <input type="number" class="form-control form-control-user" name="barang1" id="barang1" placeholder="Jumlah Halaman" value=0>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="keterangan">Keterangan</label>
-                    <input type="text" class="form-control" id="keterangan" name="keterangan" required>
-                    <div class="invalid-feedback">
-                      Masukan Keterangan Transaksi
+                  <div class="row">
+                    <div class="col-lg-4">
+                      1/4 Warna
                     </div>
-                    <?= form_error('keterangan', '<div class="alert-danger" role="alert">', '</div>'); ?>
+                    <div class="form-group col-lg-8">
+                      <input type="number" class="form-control form-control-user" name="barang2" id="barang2" placeholder="Jumlah Halaman" value=0>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      1/2 Warna
+                    </div>
+                    <div class="form-group col-lg-8">
+                      <input type="number" class="form-control form-control-user" name="barang3" id="barang3" placeholder="Jumlah Halaman" value=0>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      Full Warna
+                    </div>
+                    <div class="form-group col-lg-8">
+                      <input type="number" class="form-control form-control-user" name="barang4" id="barang4" placeholder="Jumlah Halaman" value=0>
+                    </div>
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Tambah</button>
+                  <button data-dismiss="modal" data-toggle="modal" data-target="#Mtagihan" class="btn btn-primary" onclick="hitung()">Tambah</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
+<!-- modal tagihan -->
+<div class="modal fade" id="Mtagihan" tabindex="-1" role="dialog" aria-labelledby="mahasiswaEditLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="<?= base_url('Admin/tambah_transaksi/'); ?>" method="POST" class="needs-validation" novalidate>
+        <div class="modal-header">
+          <h4 class="modal-title">Tagihan Pembayaran</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-4">
+              Hitam Putih
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="satu">0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              1/4 Warna
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="dua">0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              1/2 Warna
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="tiga">0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              Full Warna
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="empat">0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              Total
+            </div>
+            <div class="form-group col-lg-8">
+              <p id="tagihanfield">Total : Rp. 0</p>
+            </div>
+          </div>
+          <input type="hidden" name="harga" id="harga">
+          <input type="hidden" name="keterangan" id="keterangan">
+          <span style="display : none">
+            <input type="date" name="tanggal" id="tanggal" value='<?= date("Y-m-d"); ?>'>
+          </span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+          <input type="submit" class="btn btn-primary" value="Simpan">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- end modal detail -->
