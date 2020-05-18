@@ -32,14 +32,7 @@ class Owner extends CI_Controller
         $this->load->view('owner/index');
         $this->load->view('owner/template/footer');
     }
-
-    public function transaksi()
-    {
-        $data = $this->data();
-        $data['header'] = 'SI-UP - Transaksi';
-        $data['active'] = 'Data Transaksi';
-        $data['item'] = $this->db->get('transaksi')->result_array();
-
+    function filter($data){
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
 
@@ -71,14 +64,24 @@ class Owner extends CI_Controller
         }
 
         $data['ket'] = $ket;
-        $data['url_cetak'] = base_url('owner/' . $url_cetak);
         $data['transaksi'] = $transaksi;
+        $data['url_cetak'] = base_url('owner/' . $url_cetak);
+        return $data;
+    }
+    public function transaksi()
+    {
+        $data = $this->data();
+        $data['header'] = 'SI-UP - Transaksi';
+        $data['active'] = 'Data Transaksi';
+        $data['item'] = $this->db->get('transaksi')->result_array();
+
+        $data=$this->filter($data);
         $data['option_tahun'] = $this->cetak_model->option_tahun();
 
         $this->load->view('owner/template/header', $data);
         $this->load->view('owner/template/sidebar');
         $this->load->view('owner/template/topbar');
-        $this->load->view('owner/transaksi', $data);
+        $this->load->view('owner/transaksi');
         $this->load->view('owner/template/footer');
     }
     public function tambah_transaksi()
@@ -130,35 +133,9 @@ class Owner extends CI_Controller
 
     public function cetak()
     {
-        if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
-            $filter = $_GET['filter']; // Ambil data filder yang dipilih user
-
-            if ($filter == '1') { // Jika filter nya 1 (per tanggal)
-                $tgl = $_GET['tanggal'];
-
-                $ket = 'Data Transaksi Tanggal ' . date('d-m-y', strtotime($tgl));
-                $transaksi = $this->cetak_model->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di cetak_model
-            } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
-                $bulan = $_GET['bulan'];
-                $tahun = $_GET['tahun'];
-                $nama_bulan = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
-
-                $ket = 'Data Transaksi Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
-                $transaksi = $this->cetak_model->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di cetak_model
-            } else { // Jika filter nya 3 (per tahun)
-                $tahun = $_GET['tahun'];
-
-                $ket = 'Data Transaksi Tahun ' . $tahun;
-                $transaksi = $this->cetak_model->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di cetak_model
-            }
-        } else { // Jika user tidak mengklik tombol tampilkan
-            $ket = 'Semua Data Transaksi';
-            $transaksi = $this->cetak_model->view_all(); // Panggil fungsi view_all yang ada di cetak_model
-        }
-
-        $data['ket'] = $ket;
-        $data['transaksi'] = $transaksi;
-
+        
+        $data=$this->data();
+        $data=$this->filter($data);
         ob_start();
         $this->load->view('Owner/print', $data);
         $html = ob_get_contents();

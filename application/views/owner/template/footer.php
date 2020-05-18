@@ -59,8 +59,8 @@
 <script src="<?= base_url('assets/'); ?>js/base.js"></script>
 
 <!-- Import JS keperluan cetak Transaksi -->
-<script src="<?= base_url('assets/jquery.min.js'); ?>"></script>
-<script src="<?= base_url('assets/jquery-ui/jquery-ui.min.js'); ?>"></script> <!-- Load file plugin js jquery-ui -->
+<script src="<?= base_url('assets/jquery-ui/jquery-ui.min.js'); ?>"></script> 
+<!-- Load file plugin js jquery-ui -->
 
 <script>
   $(document).ready(function() { // Ketika halaman selesai di load
