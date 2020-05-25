@@ -7,6 +7,7 @@ class Karyawan extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('level') != 3) {
+            log_message('error', 'Telah telah terjadi usaha akses pada halaman Karyawan langsung !');
             redirect('Auth');
         }
         $this->load->model('cetak_model');
@@ -41,7 +42,7 @@ class Karyawan extends CI_Controller
         $data = $this->data();
         $data['header'] = 'SI-UP - Transaksi';
         $data['active'] = 'Data Transaksi';
-        $data=$this->filter($data);
+        $data = $this->filter($data);
         $data['option_tahun'] = $this->cetak_model->option_tahun();
 
 
@@ -67,8 +68,9 @@ class Karyawan extends CI_Controller
         $this->load->view('karyawan/barang');
         $this->load->view('karyawan/template/footer');
     }
-    function filter($data){
-        
+    function filter($data)
+    {
+
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
 
@@ -135,8 +137,8 @@ class Karyawan extends CI_Controller
         // $data['ket'] = $ket;
         // $data['transaksi'] = $transaksi;
         //============================================== diganti dengan filter() ======================================================================
-        $data=$this->data();
-        $data=$this->filter($data);
+        $data = $this->data();
+        $data = $this->filter($data);
         ob_start();
         $this->load->view('karyawan/print', $data);
         $html = ob_get_contents();

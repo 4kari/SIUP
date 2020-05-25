@@ -8,6 +8,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('level') != 1) {
+            log_message('error', 'Telah telah terjadi usaha akses pada halaman Admin langsung !');
             redirect('Auth');
         }
         $this->load->model('model_owner_admin', 'model');

@@ -22,6 +22,7 @@ class model_owner_admin extends CI_Model
                 $post['gambar'] = "up.jpg";
                 $this->db->insert('user', $post);
                 $this->session->set_flashdata('pesan', 'Menambah User baru berhasil');
+                log_message('debug', $post['username'] . ' berhasil ditambahkan');
             } else {
                 //kondisi ketika kode barang sudah ada
                 $this->session->set_flashdata('pesan', 'Username ini sudah terdaftar');
@@ -46,6 +47,7 @@ class model_owner_admin extends CI_Model
                 $this->db->update('user', $post);
                 //kondisi ketika sukses menambahkan data
                 $this->session->set_flashdata('pesan', 'Edit Data User berhasil');
+                log_message('debug', 'edit data berhasil dilakukan');
             } else {
                 //kondisi ketika kode barang sudah ada
                 $this->session->set_flashdata('pesan', 'Tidak melakukan Edit Data User');
@@ -67,6 +69,7 @@ class model_owner_admin extends CI_Model
                 $this->db->insert('barang', $post);
                 //kondisi ketika sukses menambahkan data
                 $this->session->set_flashdata('pesan', 'Barang berhasil ditambahkan');
+                log_message('debug', 'Barang berhasil ditambahkan');
             } else {
                 //kondisi ketika kode barang sudah ada
                 $this->session->set_flashdata('pesan', 'Barang sudah pernah ditambahkan');
@@ -90,6 +93,7 @@ class model_owner_admin extends CI_Model
                 $this->db->update('barang', $post);
                 //kondisi ketika sukses menambahkan data
                 $this->session->set_flashdata('pesan', 'Edit Data Barang berhasil');
+                log_message('debug', 'Edit Data Barang berhasil');
             } else {
                 //kondisi ketika kode barang sudah ada
                 $this->session->set_flashdata('pesan', 'Barang sudah pernah ditambahkan');
@@ -111,6 +115,7 @@ class model_owner_admin extends CI_Model
             $this->db->insert('transaksi', $post);
             //kondisi ketika sukses menambahkan data
             $this->session->set_flashdata('pesan', 'Transaksi baru berhasil ditambahkan');
+            log_message('debug', 'Transaksi baru berhasil ditambahkan');
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan transaksi');
@@ -128,6 +133,7 @@ class model_owner_admin extends CI_Model
             $this->db->update('transaksi', $post);
             //kondisi ketika sukses menambahkan data
             $this->session->set_flashdata('pesan', 'Edit Data Transaksi berhasil');
+            log_message('debug', 'Edit Data Transaksi berhasil');
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan edit transaksi');

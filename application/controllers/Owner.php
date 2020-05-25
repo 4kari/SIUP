@@ -7,6 +7,7 @@ class Owner extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('level') != 2) {
+            log_message('error', 'Telah telah terjadi usaha akses pada halaman Owner langsung !');
             redirect('Auth');
         }
         $this->load->model('model_owner_admin', 'model');
@@ -32,7 +33,8 @@ class Owner extends CI_Controller
         $this->load->view('owner/index');
         $this->load->view('owner/template/footer');
     }
-    function filter($data){
+    function filter($data)
+    {
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
 
@@ -75,7 +77,7 @@ class Owner extends CI_Controller
         $data['active'] = 'Data Transaksi';
         $data['item'] = $this->db->get('transaksi')->result_array();
 
-        $data=$this->filter($data);
+        $data = $this->filter($data);
         $data['option_tahun'] = $this->cetak_model->option_tahun();
 
         $this->load->view('owner/template/header', $data);
@@ -133,9 +135,9 @@ class Owner extends CI_Controller
 
     public function cetak()
     {
-        
-        $data=$this->data();
-        $data=$this->filter($data);
+
+        $data = $this->data();
+        $data = $this->filter($data);
         ob_start();
         $this->load->view('Owner/print', $data);
         $html = ob_get_contents();

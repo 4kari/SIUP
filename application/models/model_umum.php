@@ -54,6 +54,7 @@ class model_umum extends CI_Model
 			];
 			$this->db->insert('user', $data);
 			$this->session->set_flashdata('pesan', 'Pendaftaran Sukses !');
+			log_message('debug', 'Username' . $data['username'] . ' berhasil ditambahkan');
 		}
 	}
 }
