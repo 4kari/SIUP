@@ -14,12 +14,15 @@ class model_owner_admin extends CI_Model
     {
         $post = $this->input->post();
         $this->form_validation->set_rules('nama_user', 'nama_user', 'required|trim');
-        $this->form_validation->set_rules('username', 'username', 'required|trim');
+        $this->form_validation->set_rules('username', 'username', 'required|trim|is_unique[user.username]', [
+            'is_unique' => 'Username ini sudah digunakan!'
+        ]);
         $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[8]', ['min_length' => 'password terlalu pendek']);
         $this->form_validation->set_rules('level', 'level', 'required|trim');
         if ($this->form_validation->run() == true) {
             if (!$this->db->get_where('user', ['username' => $post['username']])->row_array()) {
                 $post['gambar'] = "up.jpg";
+                $post['password'] = password_hash($post['password'], PASSWORD_DEFAULT);
                 $this->db->insert('user', $post);
                 $this->session->set_flashdata('pesan', 'Menambah User baru berhasil');
                 log_message('debug', $post['username'] . ' berhasil ditambahkan');
