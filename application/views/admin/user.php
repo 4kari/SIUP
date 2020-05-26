@@ -4,7 +4,7 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800"><?= $active ?></h1>
           <p class="mb-4">Halaman ini akan memperlihatkan kepada anda data transaksi</a>.</p>
-
+          <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -122,7 +122,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="barang">Tambah Data Transaksi</h5>
+                <h5 class="modal-title" id="barang">Tambah User baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

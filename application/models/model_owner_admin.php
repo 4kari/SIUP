@@ -33,8 +33,8 @@ class model_owner_admin extends CI_Model
             }
         } else {
             //kondisi ketika salah satu field kosong
-            $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan');
-            log_message('error', 'Harap mengisi seluruh inputan');
+            $this->session->set_flashdata('pesan', 'Tambah User baru tidak berhasil');
+            log_message('error', 'Tambah User baru tidak berhasil');
         }
     }
     public function edituser($username)
@@ -65,7 +65,7 @@ class model_owner_admin extends CI_Model
     public function tambahbarang()
     {
         $post = $this->input->post();
-        $this->form_validation->set_rules('id', 'id', 'required|trim');
+        $this->form_validation->set_rules('id', 'id', 'required|trim|max_length[4]');
         $this->form_validation->set_rules('nama_barang', 'nama_barang', 'required|trim');
         if ($this->form_validation->run() == true) {
             if (!$this->db->get_where('barang', ['id' => $post['id']])->row_array()) {
@@ -80,18 +80,18 @@ class model_owner_admin extends CI_Model
             }
         } else {
             //kondisi ketika salah satu field kosong
-            $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan barang');
-            log_message('error', 'Harap mengisi seluruh inputan barang');
+            $this->session->set_flashdata('pesan', 'Gagal menambahkan barang');
+            log_message('error', 'Gagal menambahkan barang');
         }
     }
     public function editbarang($id)
     {
         $post = $this->input->post();
-        $this->form_validation->set_rules('id', 'id', 'required|trim');
+        $this->form_validation->set_rules('id', 'id', 'required|trim|max_length[4]');
         $this->form_validation->set_rules('nama_barang', 'nama_barang', 'required|trim');
         if ($this->form_validation->run() == true) {
             $data = $this->db->get_where('barang', ['id' => $id])->row_array();
-            if (!$data || $data['id'] == $id) {
+            if (!$data || $data['id'] == $post['id']) {
                 $this->db->where('id', $id);
                 $this->db->update('barang', $post);
                 //kondisi ketika sukses menambahkan data
@@ -99,13 +99,13 @@ class model_owner_admin extends CI_Model
                 log_message('debug', 'Edit Data Barang berhasil');
             } else {
                 //kondisi ketika kode barang sudah ada
-                $this->session->set_flashdata('pesan', 'Barang sudah pernah ditambahkan');
-                log_message('error', 'Barang sudah pernah ditambahkan');
+                $this->session->set_flashdata('pesan', 'ID Barang sudah terpakai');
+                log_message('error', 'ID Barang sudah terpakai');
             }
         } else {
             //kondisi ketika salah satu field kosong
-            $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan barang');
-            log_message('error', 'Harap mengisi seluruh inputan barang');
+            $this->session->set_flashdata('pesan', 'Gagal menambahkan barang');
+            log_message('error', 'Gagal menambahkan barang');
         }
     }
     public function tambahtransaksi()
@@ -115,6 +115,7 @@ class model_owner_admin extends CI_Model
         $this->form_validation->set_rules('harga', 'harga', 'required|trim');
         $this->form_validation->set_rules('keterangan', 'keterangan', 'required|trim');
         if ($this->form_validation->run() == true) {
+
             $this->db->insert('transaksi', $post);
             //kondisi ketika sukses menambahkan data
             $this->session->set_flashdata('pesan', 'Transaksi baru berhasil ditambahkan');

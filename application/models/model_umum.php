@@ -24,6 +24,7 @@ class model_umum extends CI_Model
 			log_message('error', 'user belum terdaftar');
 		}
 	}
+
 	public function tambah()
 	{
 		$post = $this->input->post();

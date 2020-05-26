@@ -12,6 +12,7 @@ class karyawan_model extends CI_Model
             $this->db->insert('transaksi', $post);
             //kondisi ketika sukses menambahkan data
             $this->session->set_flashdata('pesan', 'Transaksi baru berhasil ditambahkan');
+            log_message('debug', 'Transaksi baru berhasil ditambahkan');
         } else {
             //kondisi ketika salah satu field kosong
             $this->session->set_flashdata('pesan', 'Harap mengisi seluruh inputan transaksi');

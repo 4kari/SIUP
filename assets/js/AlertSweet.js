@@ -83,12 +83,12 @@ if (flashdata == 'Tidak melakukan Edit Data User') {
 }
 
 //Notifikasi ada field kosong
-if (flashdata == 'Harap mengisi seluruh inputan') {
+if (flashdata == 'Tambah User baru tidak berhasil') {
     Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'Edit Data User tidak berhasil',
-        text: flashdata,
+        title: flashdata,
+        text: 'Harap periksa kembali. Inputan tidak boleh kosong, username tidak boleh sama dan password tidak kurang dari 8 karakter',
         showConfirmButton: true,
     })
 }
@@ -151,12 +151,22 @@ if (flashdata == 'Barang sudah pernah ditambahkan') {
 }
 
 //Notifikasi ada field kosong (barang)
-if (flashdata == 'Harap mengisi seluruh inputan barang') {
+if (flashdata == 'Gagal menambahkan barang') {
     Swal.fire({
         position: 'center',
         icon: 'error',
         title: 'Tambah Barang tidak berhasil',
-        text: flashdata,
+        text: 'Harap kembali memeriksa inputan. ID Barang tidak boleh lebih dari 4 karakter',
+        showConfirmButton: true,
+    })
+}
+
+if (flashdata == 'ID Barang sudah terpakai') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: flashdata,
+        text: 'Harap kembali memeriksa inputan. ID Barang tidak boleh duplikasi',
         showConfirmButton: true,
     })
 }
